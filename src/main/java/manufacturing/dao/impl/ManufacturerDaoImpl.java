@@ -1,9 +1,10 @@
-package manufacturing.dao;
+package manufacturing.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import manufacturing.dao.ManufacturerDao;
 import manufacturing.db.Storage;
 import manufacturing.injections.Dao;
 import manufacturing.model.Manufacturer;
