@@ -1,15 +1,18 @@
-package manufacturing.dao;
+package manufacturing.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import manufacturing.dao.ManufacturerDao;
 import manufacturing.db.Storage;
 import manufacturing.injections.Dao;
 import manufacturing.model.Manufacturer;
 
 @Dao
 public class ManufacturerDaoImpl implements ManufacturerDao {
+
+    @Override
     public Manufacturer create(Manufacturer manufacturer) {
         Long id = Storage.manufacturerId++;
         manufacturer.setId(id);
@@ -17,14 +20,17 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
         return manufacturer;
     }
 
+    @Override
     public Optional<Manufacturer> get(Long id) {
         return Optional.ofNullable(Storage.getManufacturers().get(id));
     }
 
+    @Override
     public List<Manufacturer> getAll() {
         return new ArrayList<>(Storage.getManufacturers().values());
     }
 
+    @Override
     public Manufacturer update(Manufacturer newManufacturer) {
         Manufacturer manufacturerToChange =
                 Storage.getManufacturers().get(newManufacturer.getId());
@@ -36,6 +42,7 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
         return manufacturerToChange;
     }
 
+    @Override
     public boolean delete(Long id) {
         Map<Long, Manufacturer> manufacturers = Storage.getManufacturers();
         Manufacturer manufacturer = manufacturers.get(id);
