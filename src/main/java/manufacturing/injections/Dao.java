@@ -1,4 +1,4 @@
-package injections;
+package manufacturing.injections;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

@@ -1,8 +1,8 @@
-package injections;
+package manufacturing.injections;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Inject {
+public @interface Service {
 }

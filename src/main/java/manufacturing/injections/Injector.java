@@ -1,4 +1,4 @@
-package injections;
+package manufacturing.injections;
 
 import java.io.File;
 import java.io.IOException;

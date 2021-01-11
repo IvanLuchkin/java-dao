@@ -1,15 +1,15 @@
-package dao;
+package manufacturing.dao;
 
-import db.Storage;
-import injections.Dao;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import model.Manufacturer;
+import manufacturing.db.Storage;
+import manufacturing.injections.Dao;
+import manufacturing.model.Manufacturer;
 
 @Dao
-public class ManufacturerDao implements AbstractDao<Manufacturer> {
+public class ManufacturerDaoImpl implements ManufacturerDao {
 
     public Manufacturer create(Manufacturer manufacturer) {
         Long id = Storage.manufacturerId++;

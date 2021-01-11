@@ -1,4 +1,4 @@
-package model;
+package manufacturing.model;
 
 import java.util.ArrayList;
 import java.util.List;

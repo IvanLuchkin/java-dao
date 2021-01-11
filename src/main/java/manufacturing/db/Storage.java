@@ -1,8 +1,8 @@
-package db;
+package manufacturing.db;
 
 import java.util.HashMap;
 import java.util.Map;
-import model.Manufacturer;
+import manufacturing.model.Manufacturer;
 
 public class Storage {
     public static Long manufacturerId = 0L;

@@ -1,15 +1,15 @@
-package model;
+package manufacturing.model;
 
 import java.util.Objects;
 
-public class Manufacturer {
+public class Driver {
     private Long id;
     private String name;
-    private String country;
+    private String licenseNumber;
 
-    public Manufacturer(String name, String country) {
+    public Driver(String name, String licenseNumber) {
         this.name = name;
-        this.country = country;
+        this.licenseNumber = licenseNumber;
     }
 
     public Long getId() {
@@ -28,12 +28,12 @@ public class Manufacturer {
         this.name = name;
     }
 
-    public String getCountry() {
-        return country;
+    public String getLicenseNumber() {
+        return licenseNumber;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setLicenseNumber(String licenseNumber) {
+        this.licenseNumber = licenseNumber;
     }
 
     @Override
@@ -44,12 +44,12 @@ public class Manufacturer {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Manufacturer that = (Manufacturer) o;
-        return name.equals(that.name) && country.equals(that.country);
+        Driver driver = (Driver) o;
+        return name.equals(driver.name) && licenseNumber.equals(driver.licenseNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, country);
+        return Objects.hash(name, licenseNumber);
     }
 }
