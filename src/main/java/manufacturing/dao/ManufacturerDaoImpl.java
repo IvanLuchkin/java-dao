@@ -10,7 +10,6 @@ import manufacturing.model.Manufacturer;
 
 @Dao
 public class ManufacturerDaoImpl implements ManufacturerDao {
-
     public Manufacturer create(Manufacturer manufacturer) {
         Long id = Storage.manufacturerId++;
         manufacturer.setId(id);
