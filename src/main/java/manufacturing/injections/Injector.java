@@ -12,11 +12,6 @@ import java.util.List;
 import java.util.Map;
 
 public class Injector {
-
-
-
-
-    // this should fail build
     private static final Map<String, Injector> injectors = new HashMap<>();
     private final Map<Class<?>, Object> instanceOfClasses = new HashMap<>();
     private final List<Class<?>> classes = new ArrayList<>();
