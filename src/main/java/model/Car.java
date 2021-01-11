@@ -57,7 +57,9 @@ public class Car {
             return false;
         }
         Car car = (Car) o;
-        return model.equals(car.model) && manufacturer.equals(car.manufacturer) && drivers.equals(car.drivers);
+        return model.equals(car.model)
+                && manufacturer.equals(car.manufacturer)
+                && drivers.equals(car.drivers);
     }
 
     @Override
