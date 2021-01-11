@@ -26,7 +26,8 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
     }
 
     public Manufacturer update(Manufacturer newManufacturer) {
-        Manufacturer manufacturerToChange = Storage.getManufacturers().get(newManufacturer.getId());
+        Manufacturer manufacturerToChange =
+                Storage.getManufacturers().get(newManufacturer.getId());
         if (manufacturerToChange == null) {
             throw new RuntimeException("Manufacturer " + newManufacturer.getId() + " not found");
         }

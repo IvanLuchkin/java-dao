@@ -11,8 +11,4 @@ public class Storage {
     public static Map<Long, Manufacturer> getManufacturers() {
         return manufacturers;
     }
-
-    public static Long getManufacturerId() {
-        return manufacturerId;
-    }
 }

@@ -1,7 +1,6 @@
 package manufacturing.service;
 
 import java.util.List;
-import java.util.Optional;
 import manufacturing.dao.ManufacturerDao;
 import manufacturing.injections.Inject;
 import manufacturing.injections.Service;
