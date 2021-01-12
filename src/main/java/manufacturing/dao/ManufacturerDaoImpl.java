@@ -10,37 +10,39 @@ import manufacturing.model.Manufacturer;
 
 @Dao
 public class ManufacturerDaoImpl implements ManufacturerDao {
+
+    @Override
     public Manufacturer create(Manufacturer manufacturer) {
-        Long id = Storage.manufacturerId++;
-        manufacturer.setId(id);
-        Storage.getManufacturers().put(id, manufacturer);
-        return manufacturer;
+        return Storage.saveManufacturer(manufacturer);
     }
 
+    @Override
     public Optional<Manufacturer> get(Long id) {
         return Optional.ofNullable(Storage.getManufacturers().get(id));
     }
 
+    @Override
     public List<Manufacturer> getAll() {
         return new ArrayList<>(Storage.getManufacturers().values());
     }
 
+    @Override
     public Manufacturer update(Manufacturer newManufacturer) {
-        Manufacturer manufacturerToChange =
-                Storage.getManufacturers().get(newManufacturer.getId());
-        if (manufacturerToChange == null) {
-            throw new RuntimeException("Manufacturer " + newManufacturer.getId() + " not found");
+        Map<Long, Manufacturer> manufacturers = Storage.getManufacturers();
+        Long id = newManufacturer.getId();
+        if (!manufacturers.containsKey(id)) {
+            throw new RuntimeException("Manufacturer " + id + " not found");
         }
-        manufacturerToChange.setCountry(newManufacturer.getCountry());
-        manufacturerToChange.setName(newManufacturer.getName());
-        return manufacturerToChange;
+        Storage.getManufacturers().put(id, newManufacturer);
+        return newManufacturer;
     }
 
+    @Override
     public boolean delete(Long id) {
         Map<Long, Manufacturer> manufacturers = Storage.getManufacturers();
         Manufacturer manufacturer = manufacturers.get(id);
         if (manufacturer == null) {
-            throw new RuntimeException("Manufacturer " + id + " not found");
+            return false;
         }
         manufacturers.remove(id);
         return true;

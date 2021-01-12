@@ -10,7 +10,7 @@ import manufacturing.model.Manufacturer;
 public class ManufacturerServiceImpl implements ManufacturerService {
 
     @Inject
-    ManufacturerDao manufacturerDao;
+    private ManufacturerDao manufacturerDao;
 
     @Override
     public Manufacturer create(Manufacturer manufacturer) {
