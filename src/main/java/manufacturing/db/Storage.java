@@ -7,9 +7,9 @@ import manufacturing.model.Driver;
 import manufacturing.model.Manufacturer;
 
 public class Storage {
-    public static Long manufacturerId = 0L;
-    public static Long carId = 0L;
-    public static Long driverId = 0L;
+    private static Long manufacturerId = 0L;
+    private static Long carId = 0L;
+    private static Long driverId = 0L;
     private static final Map<Long, Manufacturer> manufacturers = new HashMap<>();
     private static final Map<Long, Car> cars = new HashMap<>();
     private static final Map<Long, Driver> drivers = new HashMap<>();
