@@ -1,9 +1,10 @@
-package manufacturing.dao;
+package manufacturing.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import manufacturing.dao.ManufacturerDao;
 import manufacturing.db.Storage;
 import manufacturing.injections.Dao;
 import manufacturing.model.Manufacturer;
@@ -33,18 +34,13 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
         if (!manufacturers.containsKey(id)) {
             throw new RuntimeException("Manufacturer " + id + " not found");
         }
-        Storage.getManufacturers().put(id, newManufacturer);
+        manufacturers.put(id, newManufacturer);
         return newManufacturer;
     }
 
     @Override
     public boolean delete(Long id) {
-        Map<Long, Manufacturer> manufacturers = Storage.getManufacturers();
-        Manufacturer manufacturer = manufacturers.get(id);
-        if (manufacturer == null) {
-            return false;
-        }
-        manufacturers.remove(id);
-        return true;
+        return Storage.getManufacturers().remove(id) != null;
+
     }
 }

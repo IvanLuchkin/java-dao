@@ -1,10 +1,11 @@
-package manufacturing.service;
+package manufacturing.service.impl;
 
 import java.util.List;
 import manufacturing.dao.ManufacturerDao;
 import manufacturing.injections.Inject;
 import manufacturing.injections.Service;
 import manufacturing.model.Manufacturer;
+import manufacturing.service.ManufacturerService;
 
 @Service
 public class ManufacturerServiceImpl implements ManufacturerService {

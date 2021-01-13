@@ -52,4 +52,12 @@ public class Driver {
     public int hashCode() {
         return Objects.hash(name, licenseNumber);
     }
+
+    @Override
+    public String toString() {
+        return "Driver{"
+                + "id=" + id
+                + ", name='" + name + '\''
+                + ", licenseNumber='" + licenseNumber + '\'' + '}';
+    }
 }
