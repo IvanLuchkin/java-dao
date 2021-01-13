@@ -41,13 +41,7 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public boolean delete(Long id) {
-        Map<Long, Car> cars = Storage.getCars();
-        Car car = cars.get(id);
-        if (car == null) {
-            return false;
-        }
-        cars.remove(id);
-        return true;
+        return Storage.getCars().remove(id) != null;
     }
 
     @Override

@@ -14,8 +14,6 @@ public class CarServiceImpl implements CarService {
 
     @Inject
     private CarDao carDao;
-    @Inject
-    private DriverDao driverDao;
 
     @Override
     public Car create(Car car) {
@@ -47,9 +45,6 @@ public class CarServiceImpl implements CarService {
     public void addDriverToCar(Driver driver, Car car) {
         car.getDrivers().add(driver);
         carDao.update(car);
-        if (!driverDao.getAll().contains(driver)) {
-            driverDao.create(driver);
-        }
     }
 
     @Override

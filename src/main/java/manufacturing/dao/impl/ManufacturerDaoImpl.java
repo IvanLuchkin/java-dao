@@ -40,12 +40,7 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
 
     @Override
     public boolean delete(Long id) {
-        Map<Long, Manufacturer> manufacturers = Storage.getManufacturers();
-        Manufacturer manufacturer = manufacturers.get(id);
-        if (manufacturer == null) {
-            return false;
-        }
-        manufacturers.remove(id);
-        return true;
+        return Storage.getManufacturers().remove(id) != null;
+
     }
 }
