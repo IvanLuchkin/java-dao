@@ -34,7 +34,7 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
         if (!manufacturers.containsKey(id)) {
             throw new RuntimeException("Manufacturer " + id + " not found");
         }
-        Storage.getManufacturers().put(id, newManufacturer);
+        manufacturers.put(id, newManufacturer);
         return newManufacturer;
     }
 

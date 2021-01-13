@@ -7,16 +7,15 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import manufacturing.dao.CarDao;
 import manufacturing.db.Storage;
+import manufacturing.injections.Dao;
 import manufacturing.model.Car;
 
+@Dao
 public class CarDaoImpl implements CarDao {
 
     @Override
     public Car create(Car car) {
-        Long id = Storage.carId++;
-        car.setId(id);
-        Storage.getCars().put(id, car);
-        return car;
+        return Storage.saveCar(car);
     }
 
     @Override
@@ -31,15 +30,13 @@ public class CarDaoImpl implements CarDao {
 
     @Override
     public Car update(Car newCar) {
-        Car carToChange =
-                Storage.getCars().get(newCar.getId());
-        if (carToChange == null) {
+        Map<Long, Car> cars = Storage.getCars();
+        Long id = newCar.getId();
+        if (!cars.containsKey(id)) {
             throw new RuntimeException("Car " + newCar.getId() + " not found");
         }
-        carToChange.setDrivers(newCar.getDrivers());
-        carToChange.setModel(newCar.getModel());
-        carToChange.setManufacturer(newCar.getManufacturer());
-        return carToChange;
+        cars.put(id, newCar);
+        return newCar;
     }
 
     @Override
@@ -47,7 +44,7 @@ public class CarDaoImpl implements CarDao {
         Map<Long, Car> cars = Storage.getCars();
         Car car = cars.get(id);
         if (car == null) {
-            throw new RuntimeException("Car " + id + " not found");
+            return false;
         }
         cars.remove(id);
         return true;

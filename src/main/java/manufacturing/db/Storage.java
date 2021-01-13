@@ -32,4 +32,18 @@ public class Storage {
         manufacturers.put(id, manufacturer);
         return manufacturer;
     }
+
+    public static Car saveCar(Car car) {
+        Long id = Storage.carId++;
+        car.setId(id);
+        cars.put(id, car);
+        return car;
+    }
+
+    public static Driver saveDriver(Driver driver) {
+        Long id = Storage.driverId++;
+        driver.setId(id);
+        drivers.put(id, driver);
+        return driver;
+    }
 }

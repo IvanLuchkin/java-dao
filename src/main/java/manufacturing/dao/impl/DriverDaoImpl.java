@@ -6,16 +6,15 @@ import java.util.Map;
 import java.util.Optional;
 import manufacturing.dao.DriverDao;
 import manufacturing.db.Storage;
+import manufacturing.injections.Dao;
 import manufacturing.model.Driver;
 
+@Dao
 public class DriverDaoImpl implements DriverDao {
 
     @Override
     public Driver create(Driver driver) {
-        Long id = Storage.driverId++;
-        driver.setId(id);
-        Storage.getDrivers().put(id, driver);
-        return driver;
+        return Storage.saveDriver(driver);
     }
 
     @Override
@@ -30,14 +29,13 @@ public class DriverDaoImpl implements DriverDao {
 
     @Override
     public Driver update(Driver newDriver) {
-        Driver driverToChange =
-                Storage.getDrivers().get(newDriver.getId());
-        if (driverToChange == null) {
+        Map<Long, Driver> drivers = Storage.getDrivers();
+        Long id = newDriver.getId();
+        if (!drivers.containsKey(id)) {
             throw new RuntimeException("Driver " + newDriver.getId() + " not found");
         }
-        driverToChange.setLicenseNumber(newDriver.getLicenseNumber());
-        driverToChange.setName(newDriver.getName());
-        return driverToChange;
+        drivers.put(id, newDriver);
+        return newDriver;
     }
 
     @Override
@@ -45,7 +43,7 @@ public class DriverDaoImpl implements DriverDao {
         Map<Long, Driver> drivers = Storage.getDrivers();
         Driver driver = drivers.get(id);
         if (driver == null) {
-            throw new RuntimeException("Driver " + id + " not found");
+            return false;
         }
         drivers.remove(id);
         return true;
