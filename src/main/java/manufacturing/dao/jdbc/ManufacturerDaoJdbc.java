@@ -31,6 +31,7 @@ public class ManufacturerDaoJdbc implements ManufacturerDao {
                 manufacturer.setId(resultSet.getObject(1, Long.class));
             }
             insert.close();
+            resultSet.close();
         } catch (SQLException e) {
             throw new DataProcessingException("Could not insert " + manufacturer, e);
         }
@@ -48,6 +49,7 @@ public class ManufacturerDaoJdbc implements ManufacturerDao {
             while (resultSet.next()) {
                 manufacturer = createObject(resultSet);
             }
+            resultSet.close();
             getById.close();
         } catch (SQLException e) {
             throw new DataProcessingException("Could not get " + manufacturer, e);
@@ -65,6 +67,7 @@ public class ManufacturerDaoJdbc implements ManufacturerDao {
             while (resultSet.next()) {
                 allManufacturers.add(createObject(resultSet));
             }
+            resultSet.close();
             getAll.close();
         } catch (SQLException e) {
             throw new DataProcessingException("Could not get all manufacturers", e);
