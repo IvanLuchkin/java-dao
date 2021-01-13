@@ -6,10 +6,8 @@ import java.util.Map;
 import java.util.Optional;
 import manufacturing.dao.ManufacturerDao;
 import manufacturing.db.Storage;
-import manufacturing.injections.Dao;
 import manufacturing.model.Manufacturer;
 
-@Dao
 public class ManufacturerDaoImpl implements ManufacturerDao {
 
     @Override
@@ -41,6 +39,5 @@ public class ManufacturerDaoImpl implements ManufacturerDao {
     @Override
     public boolean delete(Long id) {
         return Storage.getManufacturers().remove(id) != null;
-
     }
 }
