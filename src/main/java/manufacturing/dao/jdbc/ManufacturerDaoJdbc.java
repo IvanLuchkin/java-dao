@@ -46,7 +46,7 @@ public class ManufacturerDaoJdbc implements ManufacturerDao {
             PreparedStatement getById = connection.prepareStatement(query);
             getById.setLong(1, id);
             ResultSet resultSet = getById.executeQuery();
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 manufacturer = createObject(resultSet);
             }
             resultSet.close();
