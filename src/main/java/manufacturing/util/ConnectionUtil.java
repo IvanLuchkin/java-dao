@@ -8,7 +8,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class ConnectionController {
+public class ConnectionUtil {
     private static final String PROPERTIES_FILE_NAME = "src/main/resources/db.properties";
 
     static {
