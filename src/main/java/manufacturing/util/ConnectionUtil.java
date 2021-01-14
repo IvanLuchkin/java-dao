@@ -11,14 +11,6 @@ import java.util.Properties;
 public class ConnectionUtil {
     private static final String PROPERTIES_FILE_NAME = "src/main/resources/db.properties";
 
-    static {
-        try {
-            Class.forName("org.postgresql.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException("Could not find PostgreSQL driver", e);
-        }
-    }
-
     public static Connection getConnection() {
         Properties databaseProperties = new Properties();
         try {
