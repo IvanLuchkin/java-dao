@@ -41,6 +41,5 @@ public class DriverDaoImpl implements DriverDao {
     @Override
     public boolean delete(Long id) {
         return Storage.getDrivers().remove(id) != null;
-
     }
 }
