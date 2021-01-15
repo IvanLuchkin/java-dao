@@ -44,9 +44,9 @@ public class CarDaoJdbc implements CarDao {
         String query = "SELECT cars.car_id AS car_id, cars.model, m.manufacturer_id AS m_id, "
                 + "m.manufacturer_name AS m_name, m.manufacturer_country AS m_country, "
                 + "d.driver_id AS d_id, d.driver_name AS d_name, d.license_number FROM cars "
-                + "FULL JOIN cars_drivers cd ON cars.car_id = cd.car_id "
-                + "FULL JOIN drivers d ON d.driver_id = cd.driver_id "
-                + "FULL JOIN manufacturers m ON cars.manufacturer_id = m.manufacturer_id "
+                + "LEFT JOIN cars_drivers cd ON cars.car_id = cd.car_id "
+                + "LEFT JOIN drivers d ON d.driver_id = cd.driver_id "
+                + "LEFT JOIN manufacturers m ON cars.manufacturer_id = m.manufacturer_id "
                 + "WHERE cars.car_id = ? AND cars.deleted = FALSE";
         Car car = null;
         try (Connection connection = ConnectionUtil.getConnection();
@@ -71,9 +71,9 @@ public class CarDaoJdbc implements CarDao {
         String query = "SELECT cars.car_id AS car_id, cars.model, m.manufacturer_id AS m_id, "
                 + "m.manufacturer_name AS m_name, m.manufacturer_country AS m_country, "
                 + "d.driver_id AS d_id, d.driver_name AS d_name, d.license_number FROM cars "
-                + "FULL JOIN cars_drivers cd ON cars.car_id = cd.car_id "
-                + "FULL JOIN drivers d ON d.driver_id = cd.driver_id "
-                + "FULL JOIN manufacturers m ON cars.manufacturer_id = m.manufacturer_id "
+                + "LEFT JOIN cars_drivers cd ON cars.car_id = cd.car_id "
+                + "LEFT JOIN drivers d ON d.driver_id = cd.driver_id "
+                + "LEFT JOIN manufacturers m ON cars.manufacturer_id = m.manufacturer_id "
                 + "WHERE cars.deleted = false";
         List<Car> cars = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection();
@@ -175,9 +175,9 @@ public class CarDaoJdbc implements CarDao {
         String getFiltered = "SELECT cars.car_id AS car_id, cars.model, m.manufacturer_id AS m_id, "
                 + "m.manufacturer_name AS m_name, m.manufacturer_country AS m_country, "
                 + "d.driver_id AS d_id, d.driver_name AS d_name, d.license_number FROM cars "
-                + "FULL JOIN cars_drivers cd ON cars.car_id = cd.car_id "
-                + "FULL JOIN drivers d ON d.driver_id = cd.driver_id "
-                + "FULL JOIN manufacturers m ON cars.manufacturer_id = m.manufacturer_id "
+                + "LEFT JOIN cars_drivers cd ON cars.car_id = cd.car_id "
+                + "LEFT JOIN drivers d ON d.driver_id = cd.driver_id "
+                + "LEFT JOIN manufacturers m ON cars.manufacturer_id = m.manufacturer_id "
                 + "WHERE cars.deleted = FALSE "
                 + "AND cars.car_id IN (SELECT car_id FROM cars_drivers WHERE driver_id = ?)";
         List<Car> cars = new ArrayList<>();
