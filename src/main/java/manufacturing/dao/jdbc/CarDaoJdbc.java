@@ -80,7 +80,6 @@ public class CarDaoJdbc implements CarDao {
                 PreparedStatement getAllStatement = connection.prepareStatement(query,
                         ResultSet.TYPE_SCROLL_INSENSITIVE,
                         ResultSet.CONCUR_READ_ONLY)) {
-
             ResultSet resultSet = getAllStatement.executeQuery();
             while (resultSet.next()) {
                 cars.add(createCarInstance(resultSet));
@@ -97,7 +96,10 @@ public class CarDaoJdbc implements CarDao {
         List<Driver> drivers = new ArrayList<>();
         Car car = new Car(model, createManufacturerInstance(resultSet));
         do {
-            drivers.add(createDriverInstance(resultSet));
+            Driver driver = createDriverInstance(resultSet);
+            if (driver.getId() != null) {
+                drivers.add(createDriverInstance(resultSet));
+            }
         } while (resultSet.next() && resultSet.getObject("car_id", Long.class).equals(carId));
         resultSet.relative(-1);
         car.setId(carId);
