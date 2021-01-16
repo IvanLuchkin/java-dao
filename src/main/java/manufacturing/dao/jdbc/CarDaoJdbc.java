@@ -47,7 +47,7 @@ public class CarDaoJdbc implements CarDao {
                 + "LEFT JOIN cars_drivers cd ON cars.car_id = cd.car_id "
                 + "LEFT JOIN drivers d ON d.driver_id = cd.driver_id "
                 + "LEFT JOIN manufacturers m ON cars.manufacturer_id = m.manufacturer_id "
-                + "WHERE cars.car_id = ? AND cars.deleted = FALSE";
+                + "WHERE cars.car_id = ? AND cars.deleted = FALSE AND d.deleted = false";
         Car car = null;
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement getByIdStatement = connection.prepareStatement(
@@ -74,7 +74,7 @@ public class CarDaoJdbc implements CarDao {
                 + "LEFT JOIN cars_drivers cd ON cars.car_id = cd.car_id "
                 + "LEFT JOIN drivers d ON d.driver_id = cd.driver_id "
                 + "LEFT JOIN manufacturers m ON cars.manufacturer_id = m.manufacturer_id "
-                + "WHERE cars.deleted = false";
+                + "WHERE cars.deleted = false AND d.deleted = false";
         List<Car> cars = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement getAllStatement = connection.prepareStatement(query,
@@ -180,7 +180,7 @@ public class CarDaoJdbc implements CarDao {
                 + "LEFT JOIN cars_drivers cd ON cars.car_id = cd.car_id "
                 + "LEFT JOIN drivers d ON d.driver_id = cd.driver_id "
                 + "LEFT JOIN manufacturers m ON cars.manufacturer_id = m.manufacturer_id "
-                + "WHERE cars.deleted = FALSE "
+                + "WHERE cars.deleted = FALSE AND d.deleted = false "
                 + "AND cars.car_id IN (SELECT car_id FROM cars_drivers WHERE driver_id = ?)";
         List<Car> cars = new ArrayList<>();
         try (Connection connection = ConnectionUtil.getConnection();
