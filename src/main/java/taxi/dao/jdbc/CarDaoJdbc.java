@@ -47,7 +47,8 @@ public class CarDaoJdbc implements CarDao {
                 + "LEFT JOIN cars_drivers cd ON cars.car_id = cd.car_id "
                 + "LEFT JOIN drivers d ON d.driver_id = cd.driver_id "
                 + "INNER JOIN manufacturers m ON cars.manufacturer_id = m.manufacturer_id "
-                + "WHERE cars.car_id = ? AND cars.deleted = FALSE AND (d.deleted = false OR d.deleted IS NULL)";
+                + "WHERE cars.car_id = ? AND cars.deleted = FALSE "
+                + "AND (d.deleted = false OR d.deleted IS NULL)";
         Car car = null;
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement getByIdStatement = connection.prepareStatement(
