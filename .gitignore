@@ -1,3 +1,4 @@
 /java-dao.iml
 /.idea/
 target/*
+out/*
