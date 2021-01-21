@@ -5,11 +5,101 @@
          version="4.0">
 
     <servlet>
-        <servlet-name>helloWorldServlet</servlet-name>
-        <servlet-class>taxi.servlets.HelloWorldServlet</servlet-class>
+        <servlet-name>menuServlet</servlet-name>
+        <servlet-class>taxi.servlets.MenuController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>helloWorldServlet</servlet-name>
-        <url-pattern>/hello-world</url-pattern>
+        <servlet-name>menuServlet</servlet-name>
+        <url-pattern>/menu</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>createDriverServlet</servlet-name>
+        <servlet-class>taxi.servlets.driver.CreateDriverController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createDriverServlet</servlet-name>
+        <url-pattern>/drivers/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteDriverServlet</servlet-name>
+        <servlet-class>taxi.servlets.driver.DeleteDriverController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteDriverServlet</servlet-name>
+        <url-pattern>/drivers/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>allDriversServlet</servlet-name>
+        <servlet-class>taxi.servlets.driver.GetAllDriversController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>allDriversServlet</servlet-name>
+        <url-pattern>/drivers</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>createManufacturerServlet</servlet-name>
+        <servlet-class>taxi.servlets.manufacturer.CreateManufacturerController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createManufacturerServlet</servlet-name>
+        <url-pattern>/manufacturers/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteManufacturerServlet</servlet-name>
+        <servlet-class>taxi.servlets.manufacturer.DeleteManufacturerController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteManufacturerServlet</servlet-name>
+        <url-pattern>/manufacturers/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>allManufacturersServlet</servlet-name>
+        <servlet-class>taxi.servlets.manufacturer.GetAllManufacturersController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>allManufacturersServlet</servlet-name>
+        <url-pattern>/manufacturers</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>allCarsServlet</servlet-name>
+        <servlet-class>taxi.servlets.car.GetAllCarsController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>allCarsServlet</servlet-name>
+        <url-pattern>/cars</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>createCarServlet</servlet-name>
+        <servlet-class>taxi.servlets.car.CreateCarController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>createCarServlet</servlet-name>
+        <url-pattern>/cars/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>deleteCarServlet</servlet-name>
+        <servlet-class>taxi.servlets.car.DeleteCarController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>deleteCarServlet</servlet-name>
+        <url-pattern>/cars/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addDriverToCarServlet</servlet-name>
+        <servlet-class>taxi.servlets.car.AddDriverToCarController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>addDriverToCarServlet</servlet-name>
+        <url-pattern>/cars/add-driver</url-pattern>
     </servlet-mapping>
 </web-app>
