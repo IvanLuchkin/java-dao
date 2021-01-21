@@ -2,15 +2,17 @@
 <html>
 <head>
     <title>Menu</title>
-</head>
+    <style><%@include file="/WEB-INF/css/style.css"%></style></head>
 <body>
+<div>
 <h1>Menu</h1>
-<table>
-    <tr>
-        <td><button onclick="window.location.href='drivers'">Drivers</button></td>
-        <td><button onclick="window.location.href='cars'">Cars</button></td>
-        <td><button onclick="window.location.href='manufacturers'">Manufacturers</button></td>
-    </tr>
-</table>
+    <table>
+        <tr>
+            <td><button onclick="window.location.href='drivers'">Drivers</button></td>
+            <td><button onclick="window.location.href='cars'">Cars</button></td>
+            <td><button onclick="window.location.href='manufacturers'">Manufacturers</button></td>
+        </tr>
+    </table>
+</div>
 </body>
 </html>
