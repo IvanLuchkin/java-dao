@@ -1,14 +1,17 @@
-package taxi.servlets.car;
+package taxi.web.servlets.car;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import taxi.injections.Injector;
+import taxi.model.Car;
 import taxi.service.CarService;
 
-public class DeleteCarController extends HttpServlet {
+public class GetCarsByDriverController extends HttpServlet {
+    private static final String DRIVER_ID = "driver_id";
     private static final Injector injector = Injector.getInstance("taxi");
     private final CarService carService =
             (CarService) injector.getInstance(CarService.class);
@@ -16,8 +19,9 @@ public class DeleteCarController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        Long id = Long.parseLong(req.getParameter("id"));
-        carService.delete(id);
-        resp.sendRedirect(req.getContextPath() + "/cars");
+        List<Car> cars = carService.getAllByDriver(
+                (Long) req.getSession().getAttribute(DRIVER_ID));
+        req.setAttribute("cars", cars);
+        req.getRequestDispatcher("/WEB-INF/views/car/all-cars.jsp").forward(req, resp);
     }
 }

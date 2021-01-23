@@ -19,13 +19,16 @@ public class DriverDaoJdbc implements DriverDao {
 
     @Override
     public Driver create(Driver driver) {
-        String query = "INSERT INTO drivers (driver_name, license_number) VALUES (?, ?)";
+        String query = "INSERT INTO drivers "
+                + "(driver_name, license_number, login, password) VALUES (?, ?, ?, ?)";
         try (Connection connection = ConnectionUtil.getConnection();
                 PreparedStatement insertStatement =
                         connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             insertStatement.setString(1, driver.getName());
             insertStatement.setString(2, driver.getLicenseNumber());
+            insertStatement.setString(3, driver.getLogin());
+            insertStatement.setString(4, driver.getPassword());
             insertStatement.executeUpdate();
             ResultSet resultSet = insertStatement.getGeneratedKeys();
             if (resultSet.next()) {
@@ -56,6 +59,24 @@ public class DriverDaoJdbc implements DriverDao {
     }
 
     @Override
+    public Optional<Driver> findByLogin(String login) {
+        String query = "SELECT * FROM drivers WHERE login = ? AND deleted = FALSE";
+        Driver driver = null;
+        try (Connection connection = ConnectionUtil.getConnection();
+                PreparedStatement getByIdStatement = connection.prepareStatement(query)) {
+
+            getByIdStatement.setString(1, login);
+            ResultSet resultSet = getByIdStatement.executeQuery();
+            if (resultSet.next()) {
+                driver = createDriverInstance(resultSet);
+            }
+        } catch (SQLException e) {
+            throw new DataProcessingException("Could not get driver by login " + login, e);
+        }
+        return Optional.ofNullable(driver);
+    }
+
+    @Override
     public List<Driver> getAll() {
         String query = "SELECT * FROM drivers WHERE deleted = FALSE";
         List<Driver> allDrivers = new ArrayList<>();
@@ -76,8 +97,12 @@ public class DriverDaoJdbc implements DriverDao {
         Long driverId = resultSet.getObject("driver_id", Long.class);
         String name = resultSet.getObject("driver_name", String.class);
         String licenseNumber = resultSet.getObject("license_number", String.class);
+        String login = resultSet.getObject("login", String.class);
+        String password = resultSet.getObject("password", String.class);
         Driver driver = new Driver(name, licenseNumber);
         driver.setId(driverId);
+        driver.setLogin(login);
+        driver.setPassword(password);
         return driver;
     }
 

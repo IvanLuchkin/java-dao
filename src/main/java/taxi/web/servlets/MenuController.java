@@ -1,4 +1,4 @@
-package taxi.servlets;
+package taxi.web.servlets;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
