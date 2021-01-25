@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -15,7 +16,8 @@ public class AuthenticationFilter implements Filter {
     private static final String DRIVER_ID = "driver_id";
     private static final Set<String> ALLOWED_URLS = new HashSet<>();
 
-    static {
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
         ALLOWED_URLS.add("/login");
         ALLOWED_URLS.add("/register");
     }
