@@ -8,7 +8,7 @@
 <body>
 <div>
     <h1>Cars</h1>
-    <button onclick="window.location.href='menu'">Menu</button>
+    <button onclick="window.location.href='/menu'">Menu</button>
     <table border="1">
         <tr>
             <th>ID</th>

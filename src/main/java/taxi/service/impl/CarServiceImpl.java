@@ -1,6 +1,7 @@
 package taxi.service.impl;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import taxi.dao.CarDao;
 import taxi.injections.Inject;
 import taxi.injections.Service;
@@ -22,7 +23,7 @@ public class CarServiceImpl implements CarService {
     @Override
     public Car get(Long id) {
         return carDao.get(id).orElseThrow(() ->
-                new RuntimeException("Car with id " + id + " not found"));
+                new NoSuchElementException("Car with id " + id + " not found"));
     }
 
     @Override

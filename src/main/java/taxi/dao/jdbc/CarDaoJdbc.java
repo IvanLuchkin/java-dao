@@ -43,7 +43,8 @@ public class CarDaoJdbc implements CarDao {
     public Optional<Car> get(Long id) {
         String query = "SELECT cars.car_id AS car_id, cars.model, m.manufacturer_id AS m_id, "
                 + "m.manufacturer_name AS m_name, m.manufacturer_country AS m_country, "
-                + "d.driver_id AS d_id, d.driver_name AS d_name, d.license_number FROM cars "
+                + "d.driver_id AS d_id, d.driver_name AS d_name, d.license_number, "
+                + "d.login, d.password FROM cars "
                 + "LEFT JOIN cars_drivers cd ON cars.car_id = cd.car_id "
                 + "LEFT JOIN drivers d ON d.driver_id = cd.driver_id "
                 + "AND (d.deleted = false OR d.deleted IS NULL) "
@@ -71,7 +72,8 @@ public class CarDaoJdbc implements CarDao {
     public List<Car> getAll() {
         String query = "SELECT cars.car_id AS car_id, cars.model, m.manufacturer_id AS m_id, "
                 + "m.manufacturer_name AS m_name, m.manufacturer_country AS m_country, "
-                + "d.driver_id AS d_id, d.driver_name AS d_name, d.license_number FROM cars "
+                + "d.driver_id AS d_id, d.driver_name AS d_name, d.license_number, "
+                + "d.login, d.password FROM cars "
                 + "LEFT JOIN cars_drivers cd ON cars.car_id = cd.car_id "
                 + "LEFT JOIN drivers d ON d.driver_id = cd.driver_id "
                 + "AND (d.deleted = false OR d.deleted IS NULL) "
@@ -123,8 +125,12 @@ public class CarDaoJdbc implements CarDao {
         Long driverId = resultSet.getObject("d_id", Long.class);
         String name = resultSet.getObject("d_name", String.class);
         String licenseNumber = resultSet.getObject("license_number", String.class);
+        String login = resultSet.getObject("login", String.class);
+        String password = resultSet.getObject("password", String.class);
         Driver driver = new Driver(name, licenseNumber);
         driver.setId(driverId);
+        driver.setLogin(login);
+        driver.setPassword(password);
         return driver;
     }
 
@@ -179,7 +185,8 @@ public class CarDaoJdbc implements CarDao {
     public List<Car> getAllByDriver(Long driverId) {
         String getFiltered = "SELECT cars.car_id AS car_id, cars.model, m.manufacturer_id AS m_id, "
                 + "m.manufacturer_name AS m_name, m.manufacturer_country AS m_country, "
-                + "d.driver_id AS d_id, d.driver_name AS d_name, d.license_number FROM cars "
+                + "d.driver_id AS d_id, d.driver_name AS d_name, d.license_number, "
+                + "d.login, d.password FROM cars "
                 + "LEFT JOIN cars_drivers cd ON cars.car_id = cd.car_id "
                 + "LEFT JOIN drivers d ON d.driver_id = cd.driver_id "
                 + "AND (d.deleted = false OR d.deleted IS NULL) "

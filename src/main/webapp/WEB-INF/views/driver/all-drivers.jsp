@@ -8,7 +8,7 @@
 <body>
 <div>
     <h1>Drivers</h1>
-    <button onclick="window.location.href='menu'">Menu</button>
+    <button onclick="window.location.href='/menu'">Menu</button>
     <table border="1">
         <tr>
             <th>ID</th>
@@ -32,7 +32,6 @@
             </tr>
         </c:forEach>
     </table>
-    <button onclick="window.location.href='drivers/add'">Add</button>
 </div>
 </body>
 </html>

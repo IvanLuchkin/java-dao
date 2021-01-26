@@ -1,6 +1,7 @@
-package taxi.servlets.manufacturer;
+package taxi.web.servlets.manufacturer;
 
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +10,7 @@ import taxi.injections.Injector;
 import taxi.model.Manufacturer;
 import taxi.service.ManufacturerService;
 
-public class CreateManufacturerController extends HttpServlet {
+public class GetAllManufacturersController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("taxi");
     private final ManufacturerService manufacturerService =
             (ManufacturerService) injector.getInstance(ManufacturerService.class);
@@ -17,16 +18,9 @@ public class CreateManufacturerController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/views/manufacturer/create-manufacturer.jsp")
+        List<Manufacturer> manufacturers = manufacturerService.getAll();
+        req.setAttribute("manufacturers", manufacturers);
+        req.getRequestDispatcher("/WEB-INF/views/manufacturer/all-manufacturers.jsp")
                 .forward(req, resp);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
-        String name = req.getParameter("manufacturer_name");
-        String country = req.getParameter("manufacturer_country");
-        manufacturerService.create(new Manufacturer(name, country));
-        resp.sendRedirect(req.getContextPath() + "/manufacturers");
     }
 }
